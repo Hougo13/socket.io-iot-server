@@ -1,0 +1,69 @@
+{
+  "name": "socket.io-iot-server",
+  "version": "0.0.0",
+  "description": "My awesome module",
+  "main": "lib/index.js",
+  "files": [
+    "lib/"
+  ],
+  "keywords": [
+    "node",
+    "module"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Hougo13/socket.io-iot-server"
+  },
+  "scripts": {
+    "start" : "npm run build && node test/example.js",
+    "audit": "nsp check package",
+    "build": "babel -d ./ ./src",
+    "check": "npm run audit && npm outdated --depth 0",
+    "coverage": "nyc --reporter=lcov --reporter=text --reporter=html npm test",
+    "coveralls": "npm run coverage && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage",
+    "lint": "eslint src test",
+    "test": "ava --require babel-core/register",
+    "validate": "npm run lint && npm test",
+    "prepare": "npm run build && npm run validate && npm run check",
+    "pp": "npm run prepare",
+    "major": "pmm major",
+    "minor": "pmm minor",
+    "patch": "pmm patch"
+  },
+  "author": {
+    "name": "Hougo13",
+    "email": "hougo13@gmail.com",
+    "url": "https://github.com/Hougo13"
+  },
+  "pre-commit": [
+    "validate"
+  ],
+  "dependencies": {
+    "debug": "^2.2.0",
+    "lodash": "^4.12.0",
+    "q": "^1.4.1",
+    "socket.io": "^1.4.6"
+  },
+  "devDependencies": {
+    "start": "npm run build && node ./test/example.js",
+    "ava": "^0.14.0",
+    "babel-cli": "^6.5.1",
+    "babel-core": "^6.5.2",
+    "babel-eslint": "^6.0.0",
+    "babel-plugin-transform-function-bind": "^6.5.2",
+    "babel-preset-es2015": "^6.5.0",
+    "coveralls": "^2.11.9",
+    "cz-conventional-changelog": "^1.1.5",
+    "eslint": "^2.5.1",
+    "nsp": "^2.2.0",
+    "nyc": "^6.1.1",
+    "pmm": "^1.3.0",
+    "pre-commit": "^1.1.2"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  }
+}
