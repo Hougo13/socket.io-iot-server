@@ -144,9 +144,12 @@ export default class iot extends events {
       if (!_.find(this.pins, {id: pin})) {
         this.pins.push({id: pin, room: room.id})
         setTimeout(() => {
-          let i = this.pins.indexOf({id: pin, room: room.id})
+          let i = this.pins.findIndex((e) => {
+            return e.id == pin
+          })
           if (i > -1) {
             this.pins.splice(i, 1)
+            debug('timout '+pin)
           }
         }, 10000);
         socket.emit('open', true)
