@@ -175,7 +175,7 @@ export default class iot extends events {
     let client = this.findClient(socket);
     if (client.model == 'server') {
       let room = this.findRoom(socket);
-      io.to(room.id).emit('update', params);
+      io.to(room.id).emit('update', {e: params.e, d:{room: room.id, data: params.d}});
       debug('broadcast update');
     } else {
       let room = _.find(this.rooms, {id: params.to});
