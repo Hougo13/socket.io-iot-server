@@ -151,7 +151,7 @@ export default class iot extends events {
             this.pins.splice(i, 1)
             debug('timout '+pin)
           }
-        }, 10000);
+        }, 60000);
         socket.emit('open', true)
         debug(room.id+' open with '+pin)
       } else { error(); }
